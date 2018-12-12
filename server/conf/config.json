@@ -1,0 +1,28 @@
+{
+  "host": "0.0.0.0",
+  "port": 8080,
+  "authentication": false,
+  "ssl": {
+    "port": 8443,
+    "redirect": false,
+    "cert": "/path/to/certificate.pem",
+    "key": "/path/to/private/key.pem"
+  },
+  "incoming_path": "/path/to/incoming/",
+  "storage_path": "/path/to/storage",
+  "mongodb": {
+    "host": "127.0.0.1",
+    "port": 27017,
+    "db_name": "dmp_db"
+  },
+  "collections": {
+    "resources": "resource",
+    "logs": {
+      "downloads": "download_history"
+    }
+  },
+  "ckan": {
+    "url": "https://ckan.example.com",
+    "apikey": "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx"
+  }
+}

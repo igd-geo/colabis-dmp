@@ -1,0 +1,69 @@
+.panel-vertical .panel-heading {
+  text-align: right;
+  white-space: nowrap;
+  position: absolute;
+  -webkit-transform-origin: top right 0;
+  -moz-transform-origin: top right 0;
+  -ms-transform-origin: top right 0;
+  -o-transform-origin: top right 0;
+  transform-origin: top right 0;
+  -webkit-transform: translateX(-100%) rotate(-90deg);
+  -moz-transform: translateX(-100%) rotate(-90deg);
+  -ms-transform: translateX(-100%) rotate(-90deg);
+  -o-transform: translateX(-100%) rotate(-90deg);
+  transform: translateX(-100%) rotate(-90deg);
+  background: none; border: none;
+}
+
+.panel-vertical {
+  float: left;
+  min-height: 300px;
+  background: linear-gradient(to right, #dddddd 0%, #dddddd 42px, #fff 42px);
+}
+
+#file-browser {
+  padding-left: 0px;
+}
+
+#file-browser .panel-vertical {
+  margin-right: 15px;
+}
+
+.panel-vertical .panel-body {
+  padding-left: 32px;
+}
+
+
+.collapse {
+  width: 0;
+  display: none;
+  visibility: hidden;
+}
+
+.collapse.in {
+  width: 100%;
+  display: block;
+  visibility: visible;
+}
+
+/*.collapsing {
+  position: relative;
+  height: 100;
+  width: 50;
+  overflow: hidden;
+  -webkit-transition: width 0.35s ease;
+  -moz-transition: width 0.35s ease;
+  -o-transition: width 0.35s ease;
+  transition: width 0.35s ease;
+}*/
+
+.collapsing {
+  position: relative;
+  height: auto;
+  width: 0;
+  overflow: hidden;
+  -webkit-transition: width 0.36s ease;
+  -moz-transition: width 0.36s ease;
+  -o-transition: width 0.36s ease;
+  transition: width 0.36s ease;
+}

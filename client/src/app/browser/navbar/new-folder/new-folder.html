@@ -1,0 +1,7 @@
+<form #form class="uk-form" (ngSubmit)="onSubmit()">
+  <div class="form-button-input">
+    <input id="input-folder-name" [(ngModel)]="name" placeholder="Folder Name" name="name" [focus]="true">
+    <a (click)="onSubmit();">Create</a>
+  </div>
+  <input type="submit" hidden>
+</form>

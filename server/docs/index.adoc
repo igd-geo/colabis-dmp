@@ -1,0 +1,153 @@
+= Datamanagement Platform User Docs
+Ivo Senner <ivo.senner@igd.fraunhofer.de>
+v1.0.0-alpha.1
+:toc: right
+:homepage: http://www.colabis.de
+:numbered:
+
+Copyright (C) 2015-2016 Fraunhofer Institute for Computer Graphics Research IGD
+
+== Introduction
+
+This is the introduction
+
+NOTE: This needs a lot more work
+
+== API
+
+The Datamanagement Platform provides an RESTful API which can be used to create,
+update and delete resources and the corresponding files
+
+=== Handle resources
+
+==== Resource URL
+
+    /resources/:id
+
+==== Parameters
+
+[cols="1,2", options="header"]
+|===
+
+| Parameter
+| Description
+
+| *id* +
+  _(optional)_
+| Get the metadata of one particular resource. If id is not provided,
+  this will get a list of all resources.
+|===
+
+=== Resource Model
+
+[cols="1,4,1", options="header"]
+|===
+
+| Property
+| Type
+| Description
+| Writeable
+
+| id
+| String
+| Automatically generated ID for the resource
+| no
+
+| name
+| String
+| Name of the resource. This is not necessarily the name of the underlying file
+| yes
+
+| mimetype
+| String
+| Mimetype of the resource. This might be the build-in type for folders or the type
+  of the uploaded file. This value will be replaced on each upload.
+| yes
+
+| isFolder
+| boolean
+| Whether the resource represents a folder or not
+| no
+
+| description
+| string
+| Description of the resource
+| yes
+
+| parent
+| string
+| The id of the parent folder
+| yes
+
+| version
+| long
+| A simple, numerical version number. Each modification of the metadata or a new upload
+  will increment this version.
+| no
+
+| tags
+| List<String>
+| A list of tags
+| yes
+
+| properties
+| Map<String, Object>
+| A list of arbitrary properties to be specified by the user
+| yes
+|===
+
+| created
+| String (ISO 8601)
+| The time at which the resource was created (ISO 8601 date and time)
+| no
+
+| modified
+| String (ISO 8601)
+| The last time at which the resource was modified (ISO 8601 date and time)
+| no
+
+=== Resource File Model
+[cols="1,4,1", options="header"]
+|===
+
+| Property
+| Description
+| Writeable
+
+| id
+| Automatically generated ID for the resource
+| no
+
+| name
+| Name of the resource. This is not necessarily the name of the underlying file
+| yes
+
+| description
+| Description of the resource
+| yes
+
+| parent
+| The parent of the file
+| yes
+
+| version
+| A simple, numerical version number. Each modification of the metadata or a new upload
+  will increment this version.
+| no
+
+| created
+| The time at which the resource was created (ISO 8601 date and time)
+| no
+
+| modified
+| The last time at which the resource was modified (ISO 8601 date and time)
+| no
+
+| tags
+| A list of tags
+| yes
+
+| properties
+| A list of arbitrary properties to be specified by the user
+| yes
+|===

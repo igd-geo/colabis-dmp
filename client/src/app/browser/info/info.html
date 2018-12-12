@@ -1,0 +1,43 @@
+<div *ngIf="!!(resource|async)"
+    class="uk-text-small uk-accordion"
+    data-uk-accordion="{showfirst: true, collapse: false}">
+
+  <div class="uk-margin-bottom">
+    <h3 class="uk-accordion-title border-top-radius-remove border-right-radius-remove">Details</h3>
+    <div class="uk-accordion-content">
+      <resource-details [resource]="resource|async"></resource-details>
+    </div>
+  </div>
+
+  <div
+      class="uk-margin-bottom">
+    <h3 class="uk-accordion-title border-right-radius-remove uk-margin-remove">Properties</h3>
+    <div class="uk-accordion-content">
+      <resource-properties [resource]="resource|async"></resource-properties>
+    </div>
+  </div>
+
+  <div
+      class="uk-margin-bottom">
+    <h3 class="uk-accordion-title border-right-radius-remove">Extras</h3>
+    <div class="uk-accordion-content">
+      <resource-extras [resource]="resource|async"></resource-extras>
+    </div>
+  </div>
+
+  <div [hidden]="(resource|async).is_folder"
+      class="uk-margin-bottom">
+    <h3 class="uk-accordion-title border-right-radius-remove">Tags</h3>
+    <div class="uk-accordion-content">
+      <resource-tags [resource]="resource|async"></resource-tags>
+    </div>
+  </div>
+
+  <div [hidden]="(resource|async).is_folder || !(resource|async).qualification.is_sufficient"
+      class="uk-margin-bottom">
+    <h3 class="uk-accordion-title border-right-radius-remove">Publish</h3>
+    <div class="uk-accordion-content">
+      <resource-publish [resource]="resource|async"></resource-publish>
+    </div>
+  </div>
+</div>

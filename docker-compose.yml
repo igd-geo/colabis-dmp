@@ -1,0 +1,22 @@
+version: '2'
+
+volumes:
+  db_data: {}
+  storage: {}
+  
+services:
+  dmp:
+    build: ./
+    image: dmp
+    volumes:
+    - ./conf:/app/conf
+    - storage:/data/storage
+    ports:
+    - 8080:8080
+    depends_on:
+    - mongo
+
+  mongo:
+    image: mongo:3.2-jessie
+    volumes:
+    - db_data:/data/db

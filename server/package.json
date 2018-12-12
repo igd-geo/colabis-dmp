@@ -1,0 +1,17 @@
+{
+  "name": "dmp-server",
+  "version": "1.0.0",
+  "description": "REST service for the Colabis Data Management Platform",
+  "author": "Ivo Senner <ivo.senner@igd.fraunhofer.de",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:igd-geo/colabis-dmp.git"
+  },
+  "scripts": {
+    "migrate": "mm migrate"
+  },
+  "dependencies": {
+    "mongodb-migrations": "^0.6.1"
+  }
+}

@@ -1,0 +1,31 @@
+<div class="uk-navbar border-top-radius-remove">
+  <breadcrumb></breadcrumb>
+
+  <div class="uk-navbar-flip">
+    <ul class="uk-navbar-nav">
+      <li>
+        <a *ngIf="!createFolder"
+            (click)="createFolder=true">Add Folder</a>
+        <new-folder-input *ngIf="createFolder"
+            class="uk-navbar-content"
+            (done)="createFolder=false"
+            (click-outside)="createFolder=false"></new-folder-input>
+      </li>
+      <li>
+        <a (click)="importProvXML=true">Import ProvXML</a>
+        <workflow-dialog [(visible)]="importProvXML"></workflow-dialog>
+      </li>
+      <li>
+        <a (click)="uploadFile=true">Upload File</a>
+        <upload-dialog [(visible)]="uploadFile"></upload-dialog>
+      </li>
+      <li>
+        <a click-stop-propagation
+          click-prevent-default
+          (click)="showMenu()">
+          <i class="uk-icon-ellipsis-v"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

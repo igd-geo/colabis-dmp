@@ -1,0 +1,40 @@
+<ui-switch id="extrasSwitch" label-on="ALL"
+    label-off="SET"
+    [(value)]="showMissing"></ui-switch>
+<table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
+	<thead>
+		<tr>
+			<th style="text-align: right; width: 30%">Key</th>
+			<th colspan="2">Value</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let e of extras; trackBy:e?.key"
+			[hidden]="!e.value && !showMissing">
+			<td [class.invalid]="!e.valid" [class.missing]="!e.value" [title]="e.tooltip"> 
+				<span>
+            <i *ngIf="!e.valid" class="uk-icon-exclamation-triangle uk-text-small display-inherit"></i>
+            {{ e.key }}
+        </span> 
+      </td>
+			<td ><div id="value"> {{ e.value }} </div></td>
+			<td width="40px" class="uk-text-right">
+				<a class="uk-icon-justify uk-icon-ellipsis-h" (click)="show(e)" title="Show Value"></a>
+        <a class="uk-icon-justify uk-icon-pencil" (click)="edit(e)" title="Edit Extra"></a>
+        <a class="uk-icon-justify uk-icon-minus" (click)="remove(e)" title="Remove Extra"></a>
+			</td>
+		</tr>
+		<tr>
+			<td class="uk-text-right" 
+				colspan="3">
+				<a class="uk-icon-justify uk-icon-plus"
+					(click)="create()"
+          title="Create new extra"></a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<editextras-dialog [(visible)]="modalVisible"
+	[(editable)]="editable" 
+	[(resource)]="resource"
+	[(editdata)]="editdata"></editextras-dialog>

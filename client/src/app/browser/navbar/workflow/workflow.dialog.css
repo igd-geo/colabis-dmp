@@ -1,0 +1,9 @@
+.uk-comment-title.file-name {
+  margin-left: 40px;
+  margin-right: 35px;
+}
+
+.uk-form-file input {
+  font-size: inherit;
+  height: 100%;
+}

@@ -1,0 +1,67 @@
+<ui-switch id="propertiesSwitch" label-on="ALL"
+    label-off="SET"
+    [(value)]="showMissing"></ui-switch>
+<table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
+  <thead>
+    <tr>
+      <th style="text-align: right; width: 30%">Key</th>
+      <th colspan="2">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of properties; trackBy:p?.key"
+        [hidden]="!p.value && !showMissing"
+        [class.uk-active]="editing(p)">
+      <template [ngIf]="!editing(p)">
+        <td [class.invalid]="!p.valid" [class.missing]="!p.value" [title]="p.tooltip">
+          <span>
+            <i *ngIf="!p.valid" class="uk-icon-exclamation-triangle uk-text-small display-inherit"></i>
+            {{ p.key }}<span *ngIf="p.required"> *</span>
+          </span>
+        </td>
+        <td class="td-multiline" title="E.g. {{ p.example }}">{{ p.value }}</td>
+        <td width="30px" class="uk-text-right">
+          <template [ngIf]="!editing()">
+            <a class="uk-icon-justify uk-icon-pencil" (click)="edit(p)" title="Edit Property"></a>
+            <a class="uk-icon-justify uk-icon-minus" (click)="remove(p)" title="Remove Property"></a>
+          </template>
+      </td>
+      </template>
+      <template [ngIf]="editing(p)">
+        <td contenteditable (input)="keyChanged($event)" [init]="p.key">{{ p.key }}</td>
+        <td contenteditable class="td-multiline" title="E.g. {{ p.example }}" (input)="valueChanged($event)" [focus]="true">{{ p.value }}</td>
+        <td width="30px" class="uk-text-right">
+          <a class="uk-icon-justify uk-icon-check" [class.inactive]="!editdata.key || !editdata.value" (click)="save()" title="Update property"></a>
+          <a class="uk-icon-justify uk-icon-remove" (click)="reset()" title="Discard changes"></a>
+        </td>
+      </template>
+    </tr>
+    <tr *ngIf="isNew()"
+        class="uk-active">
+      <td contenteditable
+          (input)="keyChanged($event)"
+          [focus]="true"></td>
+      <td contenteditable
+          class="td-multiline"
+          (input)="valueChanged($event)"></td>
+      <td width="30px"
+          class="uk-text-right">
+        <a class="uk-icon-justify uk-icon-check"
+            [class.inactive]="!editdata.key || !editdata.value"
+            (click)="save()"
+            title="Add new property"></a>
+        <a class="uk-icon-justify uk-icon-remove"
+            (click)="reset()"
+            title="Discard new property"></a>
+      </td>
+    </tr>
+    <tr *ngIf="!editing()">
+      <td class="uk-text-right"
+          colspan="3">
+        <a class="uk-icon-justify uk-icon-plus"
+            (click)="create()"
+            title="Create new property"></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

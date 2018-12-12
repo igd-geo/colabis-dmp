@@ -1,0 +1,56 @@
+<table *ngFor="let pub of publication | async"
+       class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
+  <thead>
+    <tr>
+      <th colspan="2">Published:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Date</td>
+      <td>{{ pub.created }}</td>
+    </tr>
+    <tr>
+      <td>Version</td>
+      <td>{{ pub.resource_version }}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td class="uk-text-right"
+          colspan="3">
+        <a class="uk-icon-remove" title="Remove publication"
+           (click)="unpublish(pub)"></a>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+<table class="uk-table uk-table-condensed uk-table-striped uk-table-hover">
+  <thead>
+  <tr>
+    <th colspan="2">New Publication:</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr class="">
+      <td>Dataset</td>
+      <td #datasetInput
+          contenteditable="true"
+          (input)="datasetChanged($event)">{{ dataset }}</td>
+    </tr>
+    <tr class="">
+      <td>Organisation</td>
+      <td #organisationInput
+          contenteditable="true"
+          (input)="organisationChanged($event)">{{ organisation }}</td>
+    </tr>
+    <tr>
+      <td class="uk-text-right"
+          colspan="3">
+        <a class="uk-icon-share" title="Publish Dataset"
+            [class.inactive]="!dataset || !organisation"
+            (click)="publish()"></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

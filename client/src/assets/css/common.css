@@ -1,0 +1,47 @@
+.border-top-radius-remove,
+.border-left-radius-remove {
+  border-top-left-radius: 0px;
+}
+
+.border-top-radius-remove,
+.border-right-radius-remove {
+  border-top-right-radius: 0px;
+}
+
+.border-right-radius-remove,
+.border-bottom-radius-remove {
+  border-bottom-right-radius: 0px;
+}
+
+.border-bottom-radius-remove,
+.border-left-radius-remove {
+  border-bottom-left-radius: 0px;
+}
+
+.uk-navbar-nav>li>a {
+  text-shadow: none;
+}
+
+.uk-navbar-nav>li:hover>a,
+.uk-navbar-nav>li>a:focus,
+.uk-navbar-nav>li.uk-open>a {
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid transparent;
+}
+
+.uk-nav-navbar>li>a:hover,
+.uk-nav-navbar>li>a:focus {
+  background: rgba(0, 0, 0, 0.05);
+  color: inherit;
+  outline: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.uk-table-striped tbody tr.uk-active:nth-of-type(odd) {
+  background: #EEE;
+}
+
+.display-inherit {
+  display: inherit;
+}

@@ -1,0 +1,36 @@
+<header>
+  <nav class="uk-navbar uk-navbar-attached">
+    <div class="uk-container uk-container-center uk-visible-large">
+      <a class="uk-navbar-brand" href="https://www.colabis.de">
+        <img alt="GeoDatenManager" [src]="logo" />
+      </a>
+
+      <div class="uk-navbar-flip">
+        <ul class="uk-navbar-nav">
+          <li class="uk-parent" data-uk-dropdown [hidden]="!!(user | async)">
+            <a><i class="uk-icon-user"></i> {{ (user | async)?.name }}</a>
+            <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom">
+              <ul class="uk-nav uk-nav-navbar">
+                <li class="uk-nav-header">Account</li>
+                <li><a href (click)="logout($event)">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="uk-navbar-brand uk-navbar-center uk-hidden-small">
+        Datenmanagement-Plattform
+      </div>
+    </div>
+
+    <div class="uk-hidden-large uk-container uk-container-center uk-padding-remove">
+      <a href="#" class="uk-navbar-toggle uk-icon-hover" data-uk-toggle="{target:'#navbar-resp-menu'}"></a>
+      <ul id="navbar-resp-menu" class="uk-hidden uk-nav uk-nav-side">
+        <li class="uk-nav-header">{{ (user | async)?.name }}</li>
+        <li><a href (click)="logout($event)">Logout</a></li>
+      </ul>
+    </div>
+
+  </nav>
+</header>

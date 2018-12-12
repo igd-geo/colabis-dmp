@@ -1,0 +1,42 @@
+.breadcrumb-item:before,
+.breadcrumb-item:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-right: 0;
+  z-index: 2;
+}
+
+.breadcrumb-item a,
+.breadcrumb-item a:hover {
+  border: 0;
+  margin: 0;
+}
+
+
+/* Stroke */
+.breadcrumb-item:before {
+  right: -5px;
+  border-left-color: #ddd;
+  border-width: 20px 5px;
+}
+
+
+/* Fill */
+.breadcrumb-item:after {
+  right: -4px;
+  border-left-color: #f5f5f5;
+  border-width: 20px 5px;
+  top: 0px;
+}
+
+.breadcrumb-item:hover:after {
+  border-left-color: #fafafa;
+}
+
+.breadcrumb-item:active:after {
+  border-left-color: #eee;
+}

@@ -1,0 +1,62 @@
+<div id="upload-modal"
+    class="uk-modal">
+  <div class="uk-modal-dialog">
+    <a class="uk-modal-close uk-close"></a>
+
+    <div class="uk-modal-header">
+      <h2>Upload Files</h2>
+    </div>
+
+    <form (ngSubmit)="onSubmit(uploadForm)"
+        #uploadForm="ngForm"
+        class="uk-form uk-form-horizontal">
+      <div id="upload-drop"
+          class="uk-placeholder uk-text-center">
+        <i class="uk-icon-cloud-upload uk-icon-medium uk-text-muted uk-margin-small-right"></i> Attach files by dropping
+        them here or
+        <a class="uk-form-file">
+          select them
+          <input multiple name="files" id="upload-select" type="file" (change)="onFilesChanged($event.target.files)" ngControl="files">
+        </a>.
+      </div>
+
+      <ul *ngIf="files"
+          class="uk-comment-list">
+        <li *ngFor="let file of files; let i = index">
+          <div class="uk-comment">
+            <div class="uk-comment-header">
+              <div class="uk-comment-title uk-float-right">
+                <a class="uk-icon uk-icon-hover uk-icon-pencil"
+                    (click)="name.focus()"></a>
+                <a class="uk-icon uk-icon-hover uk-icon-trash"
+                    (click)="removeFile(i)"></a>
+              </div>
+              <i class="uk-comment-avatar uk-icon-large uk-icon-file-o"></i>
+              <div #name
+                  class="uk-comment-title file-name"
+                  contenteditable="true"
+                  (input)="changeFilename(i, $event.target.innerText)"
+                  [init]="storageNames[i]">
+              </div>
+              <div class="uk-comment-meta">
+                {{ file.type }} | {{ file.size | fileSize }}
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </form>
+
+    <div class="uk-modal-footer uk-text-right">
+      <button type="button"
+          class="uk-button"
+          (click)="close()">Cancel</button>
+      <button type="button"
+          class="uk-button uk-button-primary"
+          (click)="upload()"
+          [disabled]="!uploadForm.form.valid">
+          Upload File{{ files && files.length > 1 ? 's' : '' }}
+        </button>
+    </div>
+  </div>
+</div>

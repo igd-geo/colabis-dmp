@@ -1,0 +1,101 @@
+plugins {
+  id 'java'
+  id 'application'
+  id 'com.github.johnrengelman.shadow' version '4.0.2'
+}
+
+repositories {
+  jcenter()
+  mavenCentral()
+}
+
+ext {
+  vertxVersion = '3.3.0'
+  jodaVersion = '2.9.2'
+}
+
+sourceCompatibility = '1.8'
+mainClassName = 'io.vertx.core.Launcher'
+def mainVerticleName = 'de.colabis.dmp.Server'
+
+dependencies {
+  compile "io.vertx:vertx-web:$vertxVersion"
+  compile "io.vertx:vertx-rx-java:$vertxVersion"
+  compile "io.vertx:vertx-mongo-client:$vertxVersion"
+//  compile "io.vertx:vertx-auth-oauth2:$vertxVersion"
+
+  compile "org.jboss.logging:jboss-logging:3.3.0.Final"
+  compile "org.keycloak:keycloak-core:1.9.1.Final"
+  compile "org.keycloak:keycloak-adapter-core:1.9.1.Final"
+
+  compile "org.apache.httpcomponents:httpclient:4.5.2"
+  compile "org.apache.httpcomponents:httpmime:4.5.2"
+  compile "joda-time:joda-time:$jodaVersion"
+
+  compile "com.google.guava:guava:20.0"
+  compile "eu.trentorise.opendata:jackan:0.4.2"
+  compile "org.jooq:jool:0.9.12"
+
+  compile 'commons-io:commons-io:2.6'
+}
+
+task migrate(type: NpmTask) {
+  args = ['run', 'migrate'];
+}
+
+migrate.dependsOn(yarn_install)
+
+task copyClientData(type: Copy, dependsOn: ":client:build") {
+  from '../client/dist/'
+  include '**'
+  into 'build/resources/main/client'
+}
+
+jar.dependsOn(copyClientData)
+//processResources.dependsOn(copyClientData)
+
+shadowJar {
+  classifier = 'fat'
+  manifest {
+    attributes 'Main-Verticle': mainVerticleName
+  }
+  mergeServiceFiles {
+    include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
+  }
+}
+
+
+run {
+  classpath += files('.')
+  args 'run', mainVerticleName
+  if (project.hasProperty('args')) {
+    args += project.args
+  }
+}
+
+// Fix command-length issue in windows startscript
+// see https://issues.gradle.org/browse/GRADLE-2992
+task pathingJar(type: Jar) {
+  appendix = 'pathing'
+  manifest { attributes("Class-Path": configurations.runtime.collect { it.getName() }.join(' ') + ' ' + jar.archiveName ) }
+}
+applicationDistribution.from(pathingJar) { into "lib" }
+
+startScripts {
+  doLast {
+    def unixScriptFile = file getUnixScript()
+    def unixFileText = unixScriptFile.text
+    def winScriptFile  = file getWindowsScript()
+    def winFileText = winScriptFile.text
+
+    unixFileText = unixFileText.replace("$mainClassName", "$mainVerticleName")
+
+    // Remove too-long-classpath and use pathing jar instead
+    winFileText = winFileText.replaceAll('set CLASSPATH=.*', 'rem CLASSPATH declaration removed.')
+    winFileText = winFileText.replaceAll('("%JAVA_EXE%" .* -classpath ")%CLASSPATH%(" .*)', '$1%APP_HOME%\\\\lib\\\\' + pathingJar.archiveName + '$2')
+    winFileText = winFileText.replace("$mainClassName", "$mainVerticleName")
+
+    winScriptFile.text = winFileText
+    unixScriptFile.text = unixFileText
+  }
+}

@@ -1,0 +1,12 @@
+<Tree [nodes]="nodes"
+      [options]="options">
+  <template #treeNodeTemplate let-node>
+    <div class="uk-icon-hover uk-icon-justify"
+      [ngClass]="{
+        'uk-icon-folder-open-o': node.hasChildren && node.isExpanded,
+        'uk-icon-folder-o': node.hasChildren && node.isCollapsed
+      }">
+    </div>
+    {{ node.data.name }}
+  </template>
+</Tree>

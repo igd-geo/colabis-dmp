@@ -1,0 +1,6 @@
+<tag-input [(ngModel)]="tags" (ngModelChange)="onSave()"></tag-input>
+
+<div class="controls uk-text-right">
+ 	<a class="uk-icon-justify uk-icon-check" (click)="addTagItem()" title="Add tag"></a>
+  	<a class="uk-icon-justify uk-icon-remove" (click)="discardTagInput()" title="Discard tag"></a>
+</div>

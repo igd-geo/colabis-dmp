@@ -1,0 +1,124 @@
+<ngx-datatable
+    [rowHeight]="'auto'"
+    [columnMode]="'flex'"
+    [selectionType]="'multi'"
+    [trackByProp]="'id'"
+    [messages]="{}"
+    [cssClasses]="{
+      sortAscending: 'uk-icon-sort-asc',
+      sortDescending: 'uk-icon-sort-desc',
+      pagerLeftArrow: 'uk-step-backward',
+      pagerRightArrow: 'uk-step-forward',
+      pagerPrevious: 'uk-chevron-left',
+      pagerNext: 'uk-chevron-right'
+    }"
+    [headerHeight]="(parent && parent.is_group) ? false : 30"
+    [sortType]="multi"
+    [sorts]="[
+      {prop: 'mimetype', dir: 'asc'},
+      {prop: 'name', dir: 'asc'}
+    ]"
+    [reorderable]="false"
+    [detailRowHeight]="'auto'"
+    (activate)="onActivate($event)"
+    (select)="onSelect($event)"
+    (rowContextmenu)="onContextMenu($event)">
+  <ngx-datatable-row-detail>
+    <template let-row="row"
+        ngx-datatable-row-detail-template>
+        <resource-list [parent]="row"
+            [(selected)]="selected"
+            [(edit)]="edit">
+        </resource-list>
+    </template>
+  </ngx-datatable-row-detail>
+  <ngx-datatable-column prop="group"
+      [flexGrow]="1"
+      [minWidth]="40"
+      [resizeable]="false"
+      [sortable]="false">
+    <template ngx-datatable-header-template></template>
+    <template let-row="row"
+        ngx-datatable-cell-template>
+      <a *ngIf="row.is_group"
+          [class.uk-icon-chevron-right]="!row.$$expanded"
+          [class.uk-icon-chevron-down]="row.$$expanded"
+          title="Expand/Collapse Row"
+          (click)="table.toggleExpandRow(row)">
+      </a>
+    </template>
+  </ngx-datatable-column>
+  <ngx-datatable-column prop="type"
+      [flexGrow]="1"
+      [minWidth]="40"
+      [resizeable]="false"
+      [sortable]="false">
+    <template ngx-datatable-header-template></template>
+    <template let-row="row"
+        ngx-datatable-cell-template>
+      <i class="uk-icon-hover uk-icon-justify"
+          [class.uk-icon-files-o]="row.is_group"
+          [class.uk-icon-folder-o]="row.is_folder"
+          [class.uk-icon-file-archive-o]="parent?.is_group"
+          [class.uk-icon-code-fork]="row.is_workflow"
+          [class.uk-icon-file-o]="!parent?.is_group && !row.is_group && !row.is_folder">
+      </i>
+    </template>
+  </ngx-datatable-column>
+  <ngx-datatable-column prop="qualification"
+      [flexGrow]="1"
+      [minWidth]="40"
+      [resizeable]="false"
+      [draggable]="false">
+    <template ngx-datatable-header-template>
+      <i class="uk-icon-hover uk-icon-justify uk-icon-circle-o"></i>
+    </template>
+    <template let-qualification="value"
+        ngx-datatable-cell-template>
+      <i class="uk-icon-justify"
+          [ngClass]="{
+          'uk-icon-exclamation uk-text-danger' : !!qualification.error,
+          'uk-icon-circle uk-text-warning' : qualification.status == 2,
+          'uk-icon-check-circle uk-text-success' : qualification.status == 3
+        }"></i>
+    </template>
+  </ngx-datatable-column>
+  <ngx-datatable-column prop="name"
+      [flexGrow]="5"
+      [resizeable]="false"
+      [draggable]="false">
+    <template let-name="value"
+              ngx-datatable-cell-template>
+      <span data-uk-tooltip="{pos:'bottom-left'}" title="{{ name }}" class="uk-float-left datatable-body-cell-label">{{ name }}</span>
+    </template>
+  </ngx-datatable-column>
+  <ngx-datatable-column prop="mimetype"
+      [flexGrow]="5"
+      [resizeable]="false"
+      [draggable]="false">
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Size"
+      prop="file"
+      [flexGrow]="3"
+      [resizeable]="false"
+      [draggable]="false"
+      [sortable]="false">
+    <template let-column="column"
+        ngx-datatable-header-template>
+      <span class="uk-float-right">{{ column.name }}</span>
+    </template>
+    <template let-file="value"
+        ngx-datatable-cell-template>
+      <span class="uk-float-right">{{ file?.size | fileSize:1 }}</span>
+    </template>
+  </ngx-datatable-column>
+  <ngx-datatable-column prop="updated"
+      [flexGrow]="5"
+      [resizeable]="false"
+      [draggable]="false">
+    <template let-updated="value"
+        ngx-datatable-cell-template>
+      <span>{{ updated | date:'mediumDate' }}</span>
+    </template>
+  </ngx-datatable-column>
+</ngx-datatable>

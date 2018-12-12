@@ -1,0 +1,22 @@
+task clean(type: YarnTask) {
+  args = ['run', 'clean']
+}
+clean.dependsOn(yarn)
+
+task build(type: YarnTask) {
+  args = ['run', 'build']
+}
+build.dependsOn(yarn)
+
+task test(type: YarnTask) {
+  args = ['test']
+}
+
+task run(type: YarnTask) {
+  args = ['start']
+}
+run.dependsOn(yarn)
+
+task watch(type: YarnTask) {
+  args = ['run', 'watch']
+}

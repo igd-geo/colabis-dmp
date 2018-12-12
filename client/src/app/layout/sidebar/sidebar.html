@@ -1,0 +1,48 @@
+<!-- sidebar -->
+<div id="notification-sidebar">
+  <ul class="nav">
+    <li>
+      <a [ngClass]="{
+           'visible-xs text-center': !expanded
+         }"
+         class="" (click)="toggle()">
+        <i [ngClass]="{
+                'glyphicon-chevron-right' : expanded,
+                'glyphicon-chevron-left' : !expanded }"
+           class="glyphicon"></i>
+      </a>
+    </li>
+  </ul>
+
+  <div id="lg-menu"
+       [ngClass]="{
+         'visible-xs' : expanded,
+         'hidden-xs': !expanded
+       }"
+       class="nav">
+    <p class="title uppercase">Notifications</p>
+    <hr />
+    <ul class="nav">
+      <li *ngFor="let item of (notifications | async)">
+        <a href="#">
+          <i class="glyphicon {{ item.icon }}"></i>
+          <span class="uppercase small">{{ item.title }}</span>
+          <p>{{ item.message }}</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- tiny only nav-->
+  <ul class="nav" id="xs-menu"
+      [ngClass]="{
+         'hidden-xs' : expanded,
+         'visible-xs' : !expanded
+       }">
+    <li *ngFor="let item of (notifications | async)">
+      <a href="#featured" class="text-center" data-toggle="tooltip" title="{{ item.title }}">
+        <i class="glyphicon glyphicon-list-alt" ></i>
+      </a>
+    </li>
+  </ul>
+</div>

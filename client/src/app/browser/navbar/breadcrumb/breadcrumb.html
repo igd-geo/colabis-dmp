@@ -1,0 +1,10 @@
+<ul class="uk-navbar-nav">
+  <li class="breadcrumb-item" *ngFor="let resource of parents | async">
+    <a class="uk-button" (click)="openFolder(resource.id)">{{resource.name}}</a>
+  </li>
+</ul>
+<div class="uk-navbar-content">
+  <span>
+    {{ (folder| async)?.name }} &nbsp;
+  </span>
+</div>

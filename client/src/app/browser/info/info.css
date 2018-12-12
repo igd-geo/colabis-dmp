@@ -1,0 +1,80 @@
+:host > div{
+ padding-bottom:15px
+}
+
+.panel-heading .panel-title:after {
+  font-family: 'Glyphicons Halflings';
+  content: "\e114";
+  float: right;
+  color: grey;
+}
+
+.panel-heading {
+  cursor: pointer;
+}
+
+.panel-heading .collapsed:after {
+  content: "\e080";
+}
+
+button {
+  /*background:none!important;*/
+  /*border:none;*/
+  /*padding:0!important;*/
+  /*font: inherit;*/
+  /*border is optional*/
+}
+
+input.ng-valid[required] {
+  border-left: 5px solid #42A948;
+  /* green */
+}
+
+input.ng-invalid {
+  border-left: 5px solid #a94442;
+  /* red */
+}
+
+a.inactive {
+  cursor: default;
+  pointer-events: none;
+  color: lightgray;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none
+}
+
+a {
+  cursor: pointer;
+}
+
+table tr:last-child.active,
+table tr:last-child.active td {
+  background-color: unset;
+  border-bottom: none;
+}
+
+.uk-accordion-title {
+  margin: 0;
+}
+
+.uk-accordion-content {
+  border-left: 3px solid #E5E5E5;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 0;
+}
+
+table {
+  margin: 0;
+}
+
+.controls {
+  padding: 4px 8px;
+}
+
+table td {
+  word-break: break-all;
+  overflow: hidden;
+}

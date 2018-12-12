@@ -1,0 +1,41 @@
+:host {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#notification-sidebar {
+  height: 100%;
+  background-color: #444444;
+}
+
+#notification-sidebar * {
+  color: #ffffff;
+}
+
+#notification-sidebar a {
+  background-color: transparent;
+}
+
+#notification-sidebar .nav li {
+
+}
+
+#notification-sidebar .nav li {
+  margin-right: 5px;
+  word-wrap: break-word;
+}
+
+#notification-sidebar .nav li > a:hover {
+  background-color: #393939;
+}
+
+.title {
+  padding-left: 15px;
+  padding-top: 15px;
+  text-shadow: 4px 4px 4px #000000;
+}
+
+.uppercase {
+  text-transform: uppercase;
+  font-weight: 700;
+}

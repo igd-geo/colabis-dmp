@@ -1,0 +1,16 @@
+:host>>>.ng2-tag,
+:host>>>.ng2-tag-input>>>tag,
+:host>>>delete-icon,
+:host>>>tag-input-form input,
+:host>>>delete-icon svg {
+  letter-spacing: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  height: auto !important;
+}
+
+:host>>>tag-input .default.ng2-tag-input--focused,
+:host>>>tag-input .default.ng2-tag-input {
+  min-height: 0px;
+  border-bottom: 3px solid #E5E5E5;
+}

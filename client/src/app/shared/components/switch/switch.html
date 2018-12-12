@@ -1,0 +1,18 @@
+<div [id]="switchId" class="ui-switch">
+  <form>
+    <input type="checkbox"
+        [ngModel]="value"
+        (ngModelChange)="onValueChange($event)"
+        name="ui-switch"
+        class="ui-switch-checkbox"
+        [id]="inputId">
+    <label class="ui-switch-label"
+        [attr.for]="inputId">
+        <span class="ui-switch-inner">
+          <span>{{ labelOn }}</span>
+          <span>{{ labelOff }}</span>
+        </span>
+        <span class="ui-switch-toggle"></span>
+    </label>
+  </form>
+</div>

@@ -1,0 +1,24 @@
+/* Fix brand image size */
+.uk-navbar-brand img {
+  margin-top: -5px;
+  height: 50px;
+}
+
+.uk-navbar-content,
+.uk-navbar-center,
+.uk-navbar-brand,
+.uk-navbar-toggle {
+  height: 50px;
+  margin-top: 0;
+}
+
+.uk-navbar-nav>li>a {
+  height: 51px;
+  line-height: 50px;
+}
+
+.uk-navbar-toggle {
+  display: block;
+  box-sizing: inherit;
+  float: none;
+}

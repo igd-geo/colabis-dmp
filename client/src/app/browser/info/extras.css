@@ -1,0 +1,31 @@
+ui-switch {
+  position: absolute;
+  right: 0px;
+  margin: 5px;
+}
+
+td:first-child {
+  text-align: right;
+  font-weight: bold;
+}
+
+td.invalid {
+  color: #d85030;
+}
+
+.missing {
+  color: #999;
+}
+
+td.td-multiline {
+  white-space: pre
+}
+
+#value {
+	display: inline-block;
+	max-width: 85px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+

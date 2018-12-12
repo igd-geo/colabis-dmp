@@ -1,0 +1,28 @@
+<div class="uk-grid">
+  <div class="uk-width-large-1-6 uk-width-1-4">
+    <div class="uk-panel uk-panel-box border-left-radius-remove border-top-radius-remove">
+      <h4 class="uk-panel-title">Folders</h4>
+      <hr />
+      <folder-tree (click)="$event.stopPropagation();"></folder-tree>
+    </div>
+  </div>
+
+  <div class="uk-width-large-5-6 uk-width-3-4">
+    <action-menu (click)="$event.stopPropagation();"
+        [selection]="selection"></action-menu>
+
+    <div class="uk-grid">
+      <div class="uk-width-3-4">
+        <file-navbar></file-navbar>
+        <div class="uk-overflow-container">
+          <resource-list (click-outside)="selectFolder()"></resource-list>
+        </div>
+      </div>
+
+
+      <div class="uk-width-1-4">
+        <resource-information (click)="$event.stopPropagation();"></resource-information>
+      </div>
+    </div>
+  </div>
+</div>

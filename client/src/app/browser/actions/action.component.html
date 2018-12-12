@@ -1,0 +1,95 @@
+<div class="action-menu">
+  <div class="uk-dropdown"
+      tabindex="0">
+    <ul class="uk-nav uk-nav-dropdown">
+      <li *ngIf="entries.rename">
+        <a *ngIf="!renaming()"
+            href="#"
+            click-stop-propagation
+            click-prevent-default
+            (click)="rename()">
+          <i class="uk-icon-justify uk-icon-pencil"></i>
+          Rename
+        </a>
+        <action-input *ngIf="renaming()"
+            [value]="selection[0].name"
+            (valueChange)="onRename($event)"
+            (cancel)="resetActions()">
+        </action-input>
+      </li>
+      <li *ngIf="entries.move">
+        <a href="#"
+            click-stop-propagation
+            click-prevent-default
+            (click)="move()"><i class="uk-icon-justify uk-icon-arrow-circle-right"></i>
+          Move
+        </a>
+        <form *ngIf="moving()"
+              class="uk-form">
+              <div class="form-button-input">
+              </div>
+        </form>
+      </li>
+      <li *ngIf="entries.delete">
+        <a href="#"
+            click-stop-propagation
+            click-prevent-default
+            (click)="delete()"><i class="uk-icon-justify uk-icon-trash"></i>
+          Delete
+        </a>
+      </li>
+      <li *ngIf="entries.download || entries.downloadAsZip"
+          class="uk-nav-divider"></li>
+      <li *ngIf="entries.download">
+        <a href="#"
+            click-stop-propagation
+            click-prevent-default
+            (click)="download()"><i class="uk-icon-justify uk-icon-download"></i>
+          Download
+        </a>
+      </li>
+      <li *ngIf="entries.downloadAsZip">
+        <a href="#"
+            click-stop-propagation
+            click-prevent-default
+            (click)="downloadAsZip()"><i class="uk-icon-justify uk-icon-download"></i> 
+          Download ZIP
+        </a>
+      </li>
+      <li *ngIf="entries.group || entries.addToGroup || entries.removeFromGroup"
+          class="uk-nav-divider"></li>
+      <li *ngIf="entries.group">
+        <a *ngIf="!grouping()"
+            href="#"
+            click-stop-propagation
+            click-prevent-default
+            (click)="group()">
+          <i class="uk-icon-justify uk-icon-th-large"></i>
+          Group items
+        </a>
+        <action-input *ngIf="grouping()"
+            value="{{selection[0].name.split('.', 1)}}"
+            placeholder="group name"
+            (valueChange)="onGroup($event)"
+            (cancel)="resetActions()">
+        </action-input>
+      </li>
+      <li *ngIf="entries.addToGroup">
+        <a href="#"
+            click-stop-propagation
+            click-prevent-default
+            (click)="addToGroup()"><i class="uk-icon-justify uk-icon-plus"></i>
+          Add to group
+        </a>
+      </li>
+      <li *ngIf="entries.removeFromGroup">
+        <a href="#"
+            click-stop-propagation
+            click-prevent-default
+            (click)="removeFromGroup()"><i class="uk-icon-justify uk-icon-unlink"></i>
+          Remove from group
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
